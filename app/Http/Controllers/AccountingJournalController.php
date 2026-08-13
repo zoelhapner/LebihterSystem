@@ -37,9 +37,9 @@ class AccountingJournalController extends Controller
                 'accounting_journals.id',
                 'accounting_journals.journal_code',
                 'accounting_journals.transaction_date',
-                'users.fullname as creator_name'
+                'global.users.fullname as creator_name'
             )
-            ->leftJoin('users', 'accounting_journals.created_by', '=', 'users.id')
+            ->leftJoin('global.users', 'accounting_journals.created_by', '=', 'global.users.id')
             ->where('accounting_journals.license_id', $licenseId);
         return DataTables::of($journals)
             ->addIndexColumn()
@@ -107,7 +107,7 @@ public function create(AccountingJournal $journal)
     $workers = User::select('id', 'fullname as name')->get();
 
     $journalCode = $this->generateNextJournalCode();
-    $lastClosedDate = DB::table('accounting_periods')
+    $lastClosedDate = DB::table('lebihtersistem.accounting_periods')
         ->where('license_id', $licenseId)
         ->where('is_closed', true)
         ->max('end_date');
@@ -166,7 +166,7 @@ public function store(StoreAccountingJournalRequest $request)
     $licenseId = config('app.license_id');
     $year = date('Y', strtotime($request->transaction_date));
 
-    $isClosed = DB::table('accounting_periods')
+    $isClosed = DB::table('lebihtersistem.accounting_periods')
         ->where('license_id', $licenseId)
         ->where('year', $year)
         ->orderByDesc('id')
@@ -232,7 +232,7 @@ public function checkPeriod(Request $request)
 {
     $licenseId = config('app.license_id');
 
-    $isClosed = DB::table('accounting_periods')
+    $isClosed = DB::table('lebihtersistem.accounting_periods')
         ->where('license_id', $licenseId)
         ->whereDate('start_date', '<=', $request->date)
         ->whereDate('end_date', '>=', $request->date)
