@@ -10,6 +10,7 @@ use App\Http\Controllers\AccountingReportController;
 use App\Http\Controllers\AccountingPeriodController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\CustomersController;
 use App\Http\Controllers\AffiliatorController;
@@ -693,7 +694,9 @@ Route::middleware(['auth', 'permission:lihat daftar role'])->group(function () {
     Route::resource('/roles', RoleController::class);
     Route::post('/roles/{role}/update-permissions', [RoleController::class, 'updatePermissions'])->name('roles.updatePermissions');
 });
-
+Route::middleware(['auth', 'role:Super-Admin'])->group(function () {
+    Route::resource('/permissions', PermissionController::class);
+});
 Route::middleware(['auth', 'permission:kelola akun'])->group(function () {
     Route::get('/accounts', [AccountController::class, 'index'])->name('accounts.index');
     Route::post('/accounts/update-role', [AccountController::class, 'updateRole'])->name('accounts.update-role');

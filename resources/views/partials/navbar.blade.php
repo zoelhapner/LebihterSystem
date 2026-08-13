@@ -87,7 +87,7 @@
     align-items: center;
 }
 .website-logo img{
-    height:80px;
+    height:64px;
     position: absolute;
     left: 32px;
     top: 50%;
