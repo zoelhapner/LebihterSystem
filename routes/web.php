@@ -23,7 +23,7 @@ use App\Http\Controllers\InvestorController;
 use App\Http\Controllers\ArchitectController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\WarehouseController;
-use App\Http\Controllers\ProductColorController;
+use App\Http\Controllers\Sso\SsoController;
 use App\Http\Controllers\ProductBrandController;
 use App\Http\Controllers\ProductTypeController;
 use App\Http\Controllers\ProductCategoryController;
@@ -58,7 +58,10 @@ Route::get('/home', function () {
 Route::get('/dashboard', [DashboardController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
-
+Route::middleware('auth')->group(function () {
+    Route::get('/sso/authorize', [SsoController::class, 'authorize'])
+        ->name('sso.authorize');
+});
 Route::middleware(['auth', 'role:Super-Admin'])->group(function () {
     Route::resource('/menus', MenuController::class);
 });
