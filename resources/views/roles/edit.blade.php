@@ -1,9 +1,7 @@
 @extends('tablar::page')
 
-@section('title', 'Edit Role - ' . $role->name)
-
 @section('content')
-<div class="container my-4">
+<div class="container-xl" style="padding-top:80px">
     <div class="card shadow-sm border-0">
         <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
             <h5 class="mb-0">
@@ -44,10 +42,6 @@
                 <h5 class="fw-bold text-dark mb-3">
                     <i class="ti ti-lock me-2"></i> Permissions Berdasarkan Modul
                 </h5>
-
-                @php
-                    $groupedPermissions = $permissions->groupBy('modules');
-                @endphp
 
                 @foreach ($groupedPermissions as $moduleName => $modulePermissions)
                     <div class="card mb-3 border-0 shadow-sm">
