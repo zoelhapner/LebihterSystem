@@ -9,7 +9,7 @@ class AccountingAccount extends Model
 {
     use HasUuid;
 
-    protected $table = 'accounting_accounts';
+    protected $table = 'lebihtersistem.accounting_accounts';
     protected $casts = [
         'category' => 'string',
         'sub_category' => 'string',

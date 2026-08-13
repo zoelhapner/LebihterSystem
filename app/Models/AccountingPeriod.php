@@ -9,7 +9,7 @@ class AccountingPeriod extends Model
 {
     use HasUuid;
 
-    protected $table = 'accounting_periods';
+    protected $table = 'lebihtersistem.accounting_periods';
 
     protected $fillable = [
         'license_id',

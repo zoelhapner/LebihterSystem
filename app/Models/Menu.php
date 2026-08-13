@@ -11,6 +11,7 @@ class Menu extends Model
     protected $fillable = [
         'parent_id', 'text', 'icon', 'url', 'type', 'order', 'is_active', 'permission_name'
     ];
+    protected $table = 'lebihtersistem.menus';
 
     // Parent / children
     public function parent()

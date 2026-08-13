@@ -9,7 +9,7 @@ class AccountingClosingBalance extends Model
 {
      use HasUuid;
 
-    protected $table = 'accounting_closing_balances';
+    protected $table = 'lebihtersistem.accounting_closing_balances';
 
     protected $fillable = [
         'license_id',

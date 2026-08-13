@@ -17,13 +17,7 @@ return new class extends Migration
          * Parent dibuat dan diisi terlebih dahulu.
          */
         $tables = [
-            'accounting_accounts',
-            'accounting_periods',
-            'accounting_journals',
-            'accounting_journal_details',
-            'accounting_journal_enclosures',
-            'accounting_closing_balances',
-            'opening_balances',
+            'menus'
         ];
 
         foreach ($tables as $table) {
